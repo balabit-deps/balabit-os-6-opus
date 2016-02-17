@@ -1,0 +1,2 @@
+version=3
+http://www.opus-codec.org/downloads/ (?:|.*/)opus-(\d[\d\.]*)\.tar\.(?:xz|bz2|gz)

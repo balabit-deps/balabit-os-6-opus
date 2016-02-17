@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+ifneq (,$(filter $(DEB_HOST_ARCH), arm armel mips mipsel))
+EXTRA_CONFIG_FLAGS += --enable-fixed-point
+endif
+
+%:
+	dh $@ --parallel --with autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- --disable-silent-rules $(EXTRA_CONFIG_FLAGS)
+
+override_dh_test:
+	$(MAKE) check
+
+override_dh_strip:
+	dh_strip --dbg-package=libopus-dbg
